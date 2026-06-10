@@ -5,6 +5,13 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+// ─── One-time setup route (run after first deploy) ────────────────────────────
+Route::get('/setup', function () {
+    Artisan::call('migrate', ['--seed' => true, '--force' => true]);
+    return 'Setup complete: ' . Artisan::output();
+});
 
 // ─── Public Routes ────────────────────────────────────────────────────────────
 Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
