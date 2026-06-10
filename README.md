@@ -8,8 +8,8 @@ A full-featured Blog Management System built with **Laravel 10**, **MySQL**, **B
 
 ## Live Demo
 
-- **Website:** [YOUR_LIVE_URL_HERE]
-- **Admin Panel:** [YOUR_LIVE_URL_HERE/admin/login]
+- **Website:** [https://project-j1u6wvgjp-jaswanth-jas-pngs-projects.vercel.app](https://project-j1u6wvgjp-jaswanth-jas-pngs-projects.vercel.app)
+- **Admin Panel:** [https://project-j1u6wvgjp-jaswanth-jas-pngs-projects.vercel.app/admin/login](https://project-j1u6wvgjp-jaswanth-jas-pngs-projects.vercel.app/admin/login)
 - **Admin Credentials:**
   - Email: `admin@bloghub.com`
   - Password: `admin123`
