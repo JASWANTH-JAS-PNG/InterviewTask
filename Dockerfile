@@ -12,7 +12,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts --ignore-platform-reqs
+RUN composer update --no-dev --no-interaction --no-scripts --ignore-platform-reqs -v
 
 RUN chmod -R 775 storage bootstrap/cache
 
