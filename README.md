@@ -8,8 +8,8 @@ A full-featured Blog Management System built with **Laravel 10**, **MySQL**, **B
 
 ## Live Demo
 
-- **Website:** [https://project-d3nr3k1g9-jaswanth-jas-pngs-projects.vercel.app](https://project-d3nr3k1g9-jaswanth-jas-pngs-projects.vercel.app)
-- **Admin Panel:** [https://project-d3nr3k1g9-jaswanth-jas-pngs-projects.vercel.app/admin/login](https://project-d3nr3k1g9-jaswanth-jas-pngs-projects.vercel.app/admin/login)
+- **Website:** [https://interviewtask-gnmi.onrender.com](https://interviewtask-gnmi.onrender.com)
+- **Admin Panel:** [https://interviewtask-gnmi.onrender.com/admin/login](https://interviewtask-gnmi.onrender.com/admin/login)
 - **Admin Credentials:**
   - Email: `admin@bloghub.com`
   - Password: `admin123`
@@ -129,28 +129,26 @@ Open **http://localhost:8000** in your browser.
 
 ---
 
-## Deployment (Free Hosting — Railway)
+## Deployment (Free Hosting — Render)
 
-Railway is recommended because it supports Docker + MySQL and deploys automatically from GitHub.
+Render is recommended because it supports Docker + PostgreSQL and deploys automatically from GitHub.
 
 ### Steps:
-1. Go to [railway.app](https://railway.app) → sign in with GitHub
-2. Click **New Project → Deploy from GitHub repo** → select `Blog-management`
-3. Railway detects `railway.toml` and starts the Docker build automatically
-4. Click **+ New** → **Database** → **Add MySQL** to add a free database
-5. In the service **Variables** tab, add these environment variables:
+1. Go to [render.com](https://render.com) → sign in with GitHub
+2. Click **New → Web Service** → connect the `InterviewTask` repo
+3. Render detects the `Dockerfile` and builds automatically
+4. Create a free PostgreSQL database: **New → PostgreSQL**
+5. In the web service **Environment** tab, add these variables:
 
 ```
-APP_URL=https://your-railway-url.railway.app
-DB_HOST=     (copy from the MySQL plugin "Connect" tab)
-DB_PORT=3306
-DB_DATABASE= (copy from MySQL plugin)
-DB_USERNAME= (copy from MySQL plugin)
-DB_PASSWORD= (copy from MySQL plugin)
+DATABASE_URL=  (Internal Database URL from the PostgreSQL service)
+DB_CONNECTION=pgsql
+APP_ENV=production
+APP_DEBUG=false
 ```
 
-6. Click **Deploy** — Railway builds the Docker image, runs migrations, seeds demo data, and starts the server
-7. Your live URL appears in the Railway dashboard under **Settings → Domains**
+6. Click **Deploy** — Render builds the Docker image, runs migrations, seeds demo data, and starts the server
+7. Your live URL appears in the Render dashboard
 
 ---
 
