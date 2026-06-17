@@ -1,5 +1,5 @@
 FROM composer:2 AS deps
-RUN composer create-project laravel/laravel:^11.0 /tmp/laravel --no-interaction --prefer-dist --no-dev --quiet
+RUN composer create-project laravel/laravel:^11.0 /tmp/laravel --no-interaction --prefer-dist --no-dev --ignore-platform-reqs
 
 FROM php:8.3-cli
 
