@@ -1,7 +1,5 @@
-FROM composer:2 AS vendor
-WORKDIR /app
-COPY composer.json ./
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts --ignore-platform-reqs
+FROM composer:2 AS deps
+RUN composer create-project laravel/laravel:^11.0 /tmp/laravel --no-interaction --prefer-dist --no-dev --quiet
 
 FROM php:8.3-cli
 
@@ -14,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY . .
-COPY --from=vendor /app/vendor /app/vendor
+COPY --from=deps /tmp/laravel/vendor ./vendor
 
 RUN chmod -R 775 storage bootstrap/cache
 
