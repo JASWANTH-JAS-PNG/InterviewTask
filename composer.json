@@ -2,14 +2,11 @@
     "name": "jobyaari/blog-management",
     "type": "project",
     "description": "Blog Management System - JobYaari Assessment",
-    "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2|^8.3",
-        "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.10"
+        "php": ">=8.2",
+        "laravel/framework": "^11.0"
     },
-    "require-dev": {},
     "autoload": {
         "psr-4": {
             "App\\": "app/",
@@ -17,24 +14,10 @@
             "Database\\Seeders\\": "database/seeders/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
         ]
     },
     "extra": {
@@ -45,9 +28,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }
     },
