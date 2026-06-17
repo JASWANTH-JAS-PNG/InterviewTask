@@ -18,7 +18,10 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 8000
 
-CMD php artisan config:clear && \
+# Copy .env.example → .env so artisan commands work (Railway env vars override at runtime)
+CMD cp .env.example .env && \
+    php artisan key:generate --force && \
+    php artisan config:clear && \
     php artisan migrate --seed --force && \
     php artisan storage:link && \
     php artisan serve --host=0.0.0.0 --port=${PORT:-8000}

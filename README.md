@@ -129,21 +129,28 @@ Open **http://localhost:8000** in your browser.
 
 ---
 
-## Deployment (Free Hosting)
+## Deployment (Free Hosting — Railway)
 
-### Option A: Render (Recommended for Laravel)
-1. Push code to GitHub
-2. Create a new **Web Service** on [render.com](https://render.com)
-3. Connect your GitHub repo
-4. Set build command: `composer install && php artisan migrate --seed && php artisan storage:link`
-5. Set start command: `php artisan serve --host=0.0.0.0 --port=$PORT`
-6. Add environment variables from `.env.example`
+Railway is recommended because it supports Docker + MySQL and deploys automatically from GitHub.
 
-### Option B: InfinityFree / 000webhost
-1. Export your project via FTP to the hosting `public_html` folder
-2. Create a MySQL database via the hosting panel
-3. Update `.env` with the hosting DB credentials
-4. Run migrations manually or via Artisan CLI if supported
+### Steps:
+1. Go to [railway.app](https://railway.app) → sign in with GitHub
+2. Click **New Project → Deploy from GitHub repo** → select `Blog-management`
+3. Railway detects `railway.toml` and starts the Docker build automatically
+4. Click **+ New** → **Database** → **Add MySQL** to add a free database
+5. In the service **Variables** tab, add these environment variables:
+
+```
+APP_URL=https://your-railway-url.railway.app
+DB_HOST=     (copy from the MySQL plugin "Connect" tab)
+DB_PORT=3306
+DB_DATABASE= (copy from MySQL plugin)
+DB_USERNAME= (copy from MySQL plugin)
+DB_PASSWORD= (copy from MySQL plugin)
+```
+
+6. Click **Deploy** — Railway builds the Docker image, runs migrations, seeds demo data, and starts the server
+7. Your live URL appears in the Railway dashboard under **Settings → Domains**
 
 ---
 
