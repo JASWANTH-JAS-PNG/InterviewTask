@@ -60,18 +60,24 @@ class BlogSeeder extends Seeder
             $category = Category::where('slug', $data['category'])->first();
             if (!$category) continue;
 
-            Blog::firstOrCreate(
-                ['slug' => Str::slug($data['title']) . '-seed'],
-                [
-                    'title'        => $data['title'],
-                    'slug'         => Str::slug($data['title']) . '-seed',
-                    'excerpt'      => $data['excerpt'],
-                    'content'      => $data['content'],
-                    'category_id'  => $category->id,
-                    'published_at' => $data['date'],
-                    'image'        => null,
-                ]
-            );
+            $slug = Str::slug($data['title']) . '-seed';
+
+            // withoutEvents prevents the Blog::creating hook from overwriting the explicit slug,
+            // which would break firstOrCreate's idempotency check on re-seeding.
+            Blog::withoutEvents(function () use ($data, $category, $slug) {
+                Blog::firstOrCreate(
+                    ['slug' => $slug],
+                    [
+                        'title'        => $data['title'],
+                        'slug'         => $slug,
+                        'excerpt'      => $data['excerpt'],
+                        'content'      => $data['content'],
+                        'category_id'  => $category->id,
+                        'published_at' => $data['date'],
+                        'image'        => null,
+                    ]
+                );
+            });
         }
     }
 }
